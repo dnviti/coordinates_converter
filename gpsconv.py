@@ -4,22 +4,23 @@ import pandas as pd
 import math
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
-import time
+from timer import Timer
 
 # Initiate the browser
 browser = webdriver.Chrome(ChromeDriverManager().install())
 
+t = Timer()
+
 pixlsx = "excel/input/"
 poxlsx = "excel/output/"
 ixlsx = os.listdir(pixlsx)
-
-eltime = time.perf_counter()
 
 for x in ixlsx:
     xcoor = pd.read_excel(pixlsx+x, 0, usecols="A,B,J:L").to_numpy()
     datajlist = []
 
     for i in xcoor:
+        t.start()
         xzon = str(i[2]).strip().replace(" ", "")
         if xzon and not math.isnan(i[3]) and not math.isnan(i[4]):
             xid = i[0]
@@ -79,6 +80,7 @@ for x in ixlsx:
 
             di = {"Codice": i[0], "Nome": i[1], "Est": est, "Nord": nord}
             datajlist.append(di.copy())
+            t.stop()
 
     xdf = pd.json_normalize(datajlist)
     filename = x.replace(".xlsx", "")+"_conv.xlsx"
