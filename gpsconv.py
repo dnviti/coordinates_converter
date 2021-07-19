@@ -73,10 +73,8 @@ for x in ixlsx:
             est = round(float(est), 6)
             nord = round(float(nord), 6)
 
-            eltime = time.perf_counter() - eltime
-
             print("Codice: " + str(xid) + "| Nome:" + xname +
-                  "| Est : " + str(est) + "| Nord : " + str(nord) + "| Time (s): " + str(eltime))
+                  "| Est : " + str(est) + "| Nord : " + str(nord))
 
             di = {"Codice": i[0], "Nome": i[1], "Est": est, "Nord": nord}
             datajlist.append(di.copy())
