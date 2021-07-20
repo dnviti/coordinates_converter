@@ -78,7 +78,7 @@ for x in ixlsx:
 
             di = {"Codice": i[0], "Nome": i[1], "Est": est, "Nord": nord}
             datajlist.append(di.copy())
-            t.stop()
+        t.stop()
 
     xdf = pd.json_normalize(datajlist)
     filename = x.replace(".xlsx", "")+"_conv.xlsx"
