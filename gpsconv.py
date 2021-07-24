@@ -1,4 +1,5 @@
 import os
+from pathlib import Path
 import numpy as np
 import pandas as pd
 import math
@@ -11,12 +12,13 @@ browser = webdriver.Chrome(ChromeDriverManager().install())
 
 t = Timer()
 
-pixlsx = "excel/input/"
-poxlsx = "excel/output/"
+pixlsx = Path("excel/input/")
+poxlsx = Path("excel/output/")
 ixlsx = os.listdir(pixlsx)
 
+
 for x in ixlsx:
-    xcoor = pd.read_excel(pixlsx+x, 0, usecols="A,B,J:L").to_numpy()
+    xcoor = pd.read_excel(pixlsx/x, 0, usecols="A,B,J:L").to_numpy()
     datajlist = []
 
     for i in xcoor:
